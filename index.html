@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="COSMOS: un viaje interactivo por el sistema solar y los misterios del universo.">
+  <title>COSMOS — Un viaje por el universo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="ambient-glow glow-one" aria-hidden="true"></div>
+  <div class="ambient-glow glow-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="COSMOS, ir al inicio"><span class="brand-mark">✦</span> COSMOS<span class="brand-dot">.</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="main-nav" id="mainNav">
+      <a href="#planetas">Planetas</a>
+      <a href="#curiosidades">Curiosidades</a>
+      <a href="#exploracion">Exploración</a>
+      <a href="#quiz">Mini juego</a>
+    </nav>
+    <a class="header-cta" href="#planetas">Iniciar viaje <span>↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero section-shell" id="inicio">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> UNA VENTANA AL INFINITO</div>
+        <h1>Hay un universo<br>por <span>descubrir.</span></h1>
+        <p class="hero-lead">El universo es más grande de lo que imaginas.</p>
+        <p class="hero-description">Prepárate para explorar mundos fascinantes, descubrir misterios cósmicos y poner a prueba todo lo que sabes del espacio.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#planetas">Explorar el universo <span>→</span></a>
+          <a class="text-link" href="#curiosidades">Descubrir una curiosidad <span>↗</span></a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>8</strong><span>planetas</span></div>
+          <i></i>
+          <div><strong>∞</strong><span>posibilidades</span></div>
+          <i></i>
+          <div><strong>1</strong><span>gran aventura</span></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Ilustración del planeta Tierra en el espacio">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="planet-earth"><div class="earth-shade"></div><div class="earth-cloud cloud-a"></div><div class="earth-cloud cloud-b"></div></div>
+        <div class="moon"></div>
+        <span class="floating-label label-top">EL PLANETA AZUL <b>01 / 08</b></span>
+        <span class="floating-label label-bottom">∞ · EXPLORA SIN LÍMITES</span>
+        <span class="spark spark-a">✦</span><span class="spark spark-b">✧</span>
+      </div>
+      <a class="scroll-cue" href="#planetas"><span></span> DESLIZA PARA EXPLORAR</a>
+    </section>
+
+    <section class="section-shell section-block" id="planetas">
+      <div class="section-heading">
+        <div><div class="eyebrow">01 — NUESTRO VECINDARIO</div><h2>Ocho mundos.<br><span>Un mismo sistema.</span></h2></div>
+        <p>Desde pequeños mundos rocosos hasta gigantes gaseosos. Conoce los planetas que orbitan nuestra estrella.</p>
+      </div>
+      <div class="planet-grid" id="planetGrid"></div>
+    </section>
+
+    <section class="section-shell section-block facts-section" id="curiosidades">
+      <div class="section-heading">
+        <div><div class="eyebrow">02 — MENTES CURIOSAS</div><h2>El espacio nunca<br><span>deja de sorprender.</span></h2></div>
+        <p>El universo está lleno de fenómenos que parecen imposibles. Aquí tienes algunas razones para seguir mirando hacia arriba.</p>
+      </div>
+      <div class="fact-feature">
+        <div class="fact-icon">✧</div>
+        <div class="fact-content"><span class="eyebrow">DATO CÓSMICO ALEATORIO</span><p id="randomFact">La luz del Sol tarda aproximadamente 8 minutos y 20 segundos en llegar a la Tierra.</p><span class="fact-counter" id="factCounter">01 / 06</span></div>
+        <button class="button button-outline" id="randomFactBtn">Otro dato <span>↻</span></button>
+      </div>
+      <div class="fact-cards" id="factCards"></div>
+    </section>
+
+    <section class="section-shell section-block" id="exploracion">
+      <div class="section-heading">
+        <div><div class="eyebrow">03 — MÁS ALLÁ DE LOS PLANETAS</div><h2>La aventura apenas<br><span>está comenzando.</span></h2></div>
+        <p>Adéntrate en algunos de los objetos y fenómenos más fascinantes que conocemos del cosmos.</p>
+      </div>
+      <div class="explore-grid" id="exploreGrid"></div>
+    </section>
+
+    <section class="quiz-section section-shell section-block" id="quiz">
+      <div class="quiz-intro">
+        <div class="eyebrow">04 — DESAFÍO ESTELAR</div>
+        <h2>¿Cuánto sabes<br>del <span>universo?</span></h2>
+        <p>Es hora de comprobar tus conocimientos. Responde cinco preguntas y descubre tu nivel de explorador espacial.</p>
+        <div class="quiz-badge">✦ <span>5 preguntas · 4 opciones · 1 misión</span></div>
+      </div>
+      <div class="quiz-panel" id="quizPanel">
+        <div class="quiz-topline"><span id="questionProgress">PREGUNTA 01 / 05</span><span class="score-pill">Puntos: <b id="score">0</b></span></div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div id="quizContent">
+          <h3 id="questionText">Preparando la misión…</h3>
+          <div class="answer-grid" id="answerGrid"></div>
+          <p class="quiz-feedback" id="quizFeedback" aria-live="polite"></p>
+          <button class="button button-primary quiz-next" id="nextQuestion" hidden>Siguiente pregunta <span>→</span></button>
+        </div>
+        <div class="quiz-result" id="quizResult" hidden>
+          <div class="result-orbit">✦</div><span class="eyebrow">MISIÓN COMPLETADA</span>
+          <h3 id="resultTitle">¡Buen viaje, explorador!</h3>
+          <p id="resultText"></p>
+          <div class="result-score"><strong id="finalScore">0/5</strong><span>respuestas correctas</span></div>
+          <button class="button button-primary" id="restartQuiz">Volver a jugar <span>↻</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="#inicio"><span class="brand-mark">✦</span> COSMOS<span class="brand-dot">.</span></a>
+    <p>El universo es inmenso. Tu curiosidad, también.</p>
+    <a class="back-top" href="#inicio">Volver al inicio ↑</a>
+    <div class="footer-bottom"><span>© 2026 COSMOS · Un viaje por el universo</span><span>HECHO PARA LOS QUE MIRAN MÁS ALLÁ <b>✦</b></span></div>
+  </footer>
+
+  <dialog class="planet-dialog" id="planetDialog">
+    <button class="dialog-close" id="dialogClose" aria-label="Cerrar ventana">×</button>
+    <div class="dialog-visual" id="dialogVisual"></div>
+    <div class="dialog-body"><span class="eyebrow" id="dialogOrder"></span><h2 id="dialogName"></h2><p id="dialogDescription"></p><div class="dialog-facts" id="dialogFacts"></div><p class="dialog-extra" id="dialogExtra"></p></div>
+  </dialog>
+</body>
+</html>
